@@ -4,7 +4,7 @@
         "version": "stable"
     },
     "platform": {
-        "uuid": "fdc3_explained_platform",
+        "uuid": "workbench_platform",
         "autoShow": false,
         "defaultViewOptions": {
             "fdc3InteropApi": "1.2"
