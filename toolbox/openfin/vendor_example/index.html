@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <title>
+            Johans Market Data Terminal
+        </title>
+        <style>
+
+* {
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+a {
+
+    color: #ffffff;
+    text-decoration: none;
+
+}
+
+table.td {
+     border: 0px;
+     padding: 0px;
+     
+
+}
+
+        </style>
+        <script>
+
+            function changeApp(url){
+
+                document.getElementById('contentframe').src=url;
+
+            }
+
+            function positionNotification(){
+
+                var myNotification= document.getElementById('notificationDiv');
+
+                myNotification.style.left = window.innerWidth - 320;
+                myNotification.style.top = window.innerHeight - 180;
+
+            }
+
+            function showNotifications(){
+                positionNotification();
+
+                if (document.getElementById('notificationDiv').style.visibility=='visible'){
+                    document.getElementById('notificationDiv').style.visibility='hidden';
+                } else {
+                    document.getElementById('notificationDiv').style.visibility='visible';
+                }
+
+            }
+
+            function doSearch(){
+
+                var newAppUrl = document.getElementById('selSearch').options[document.getElementById('selSearch').selectedIndex].value;
+
+                if (newAppUrl!='x'){
+                    showNewWindow(newAppUrl);
+
+                }
+
+                document.getElementById('selSearch').selectedIndex = 0;
+
+            }
+
+            function showNewWindow(url){
+            
+            let params = `scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menubar=no,
+            width=600,height=300,left=100,top=100`;
+
+            //alert(Math.random());
+
+            let winid = 'idlookup'+Math.random();
+            
+            open(url, winid, params);
+            
+            } 
+
+            function init(){
+
+                changeApp('app1.html');
+                //positionNotification();
+
+            }
+        </script>
+    </head>
+    <body onLoad="init();" background="bg.jpg">
+
+        <div id="notificationDiv" style="position: absolute; width:300px;height:160px;background-color:#f57e0e;padding:5px;visibility: hidden;">
+            <table style="height:100%;width:100%; background-color: #cccccc;">
+                <tr>
+                    <td style="padding-left: 20px; padding-right: 20px; text-align: center;">Notification</td>
+                </tr>
+            </table>
+        </div>
+
+        <table style="width:100%;height:100%;">
+            <tr>
+                <td style="padding:0px;">
+                    <div id="banner" style="width:100%;height:100px;background-image: bg.jpg;" >
+                        <table style="width:100%;height:100%;">
+                            <tr>
+                                <td onClick="showNotifications();">
+                                    &nbsp;
+                                </td>
+                                <td style="text-align: center;"">
+                                    <select onChange="doSearch();" style="width:200px;" id="selSearch"><option value="x">Search...</option><option value="x">--------</option><option value="app4.html">App 4</option></select>
+                                </td>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:0px;">
+                    <div id="menu" style="width:100%;height:30px;background-color:#f57e0e;vertical-align: middle;">
+                        <table style="height:100%;border:1px;">
+                            <tr>
+                                <td style="padding-left: 20px; padding-right: 20px;"><a href="#" onClick="changeApp('app1.html');">App 1</a></td>
+                                <td style="padding-left: 20px; padding-right: 20px;"><a href="#" onClick="changeApp('app2.html');">App 2</a></td>
+                                <td style="padding-left: 20px; padding-right: 20px;"><a href="#" onClick="changeApp('http://localhost:9001/proxy/');">App 3</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="height:100%;padding:0px;">
+                    <iframe id="contentframe" src="" style="border:0px; width:100%; height:100%;"></iframe>
+                </td>
+            </tr>
+        </table>
+
+
+
+    </body>
+</html>

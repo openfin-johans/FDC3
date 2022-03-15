@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>
+            App 3
+        </title>
+        <style>
+
+* {
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+        </style>
+        <script>
+
+function showUtilityWindow(){
+
+positionNotification();
+showNotifications();
+
+}    
+
+function positionNotification(){
+
+var myNotification= document.getElementById('utilityDiv');
+
+myNotification.style.left = (window.innerWidth - 600)/2;
+myNotification.style.top = (window.innerHeight - 420)/2;
+
+}
+
+function showNotifications(){
+positionNotification();
+
+if (document.getElementById('utilityDiv').style.visibility=='visible'){
+    document.getElementById('utilityDiv').style.visibility='hidden';
+} else {
+    document.getElementById('utilityDiv').style.visibility='visible';
+}
+
+}
+
+        </script>
+    </head>
+    <body style="background: #ffffff;" onClick="showUtilityWindow();">
+        <div id="utilityDiv" style="position: absolute; width:600px;height:400px;background-color:#f57e0e;padding:5px;visibility: hidden;">
+            <table style="height:100%;width:100%; background-color: #cccccc;">
+                <tr>
+                    <td style="padding-left: 20px; padding-right: 20px; text-align: center;">Utility Window (eg Identifier Lookup)</td>
+                </tr>
+            </table>
+        </div>
+
+        <table style="width:100%;height:100%;">
+        <tr>
+            <td style="vertical-align: middle;text-align: center;color:#f57e0e;font-size: 36px;">App 3</td>
+        </tr>
+        </table>
+
+
+        
+    </body>
+</html>
