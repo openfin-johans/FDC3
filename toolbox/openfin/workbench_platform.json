@@ -11,36 +11,49 @@
         }
     },
     "snapshot": {
-        "windows": [
+"windows": [
             {
                 "defaultWidth": 1000,
                 "defaultHeight": 800,
                 "defaultLeft": 50,
                 "defaultTop": 50,
                 "saveWindowState": false,
-                "backgroundThrottling": true,
+                "backgroundThrottling": false,
                 "layout": {
                     "content": [
                         {
-                            "type": "stack",
-                            "id": "no-drop-target",
-                            "content": [
-                                {
-                                    "type": "component",
-                                    "componentName": "view",
-                                    "componentState": {
-                                        "name": "component_A1",
-                                        "processAffinity": "ps_1",
-                                        "showDevTools": true,
-                                        "url": "https://fdc3.finos.org/toolbox/fdc3-workbench/"
-                                    }
-                                }
-                            ]
+                          "type": "row",
+                          "content": [
+                            {
+                              "type": "component",
+                              "componentName": "view",
+                              "componentState": {
+                                "name": "workbench_1",
+                                "url": "https://fdc3.finos.org/toolbox/fdc3-workbench/"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "componentName": "view",
+                              "componentState": {
+                                "name": "workbench_2",
+                                "url": "https://fdc3.finos.org/toolbox/fdc3-workbench/"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "componentName": "view",
+                              "componentState": {
+                                "name": "workbench_3",
+                                "url": "https://fdc3.finos.org/toolbox/fdc3-workbench/"
+                              }
+                            }
+                          ]
                         }
-                    ]
+                      ]
                 }
             }
-		]
+        ]
     },
     "startup_app": null
 }
