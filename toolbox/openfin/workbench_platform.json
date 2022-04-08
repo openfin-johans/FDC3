@@ -3,6 +3,12 @@
         "arguments": "--v=1 --inspect",
         "version": "stable"
     },
+    "shortcut": {
+        "company": "Basuno",
+        "description": "FDC3 Workbench",
+        "icon": "https://donbasuno.github.io/FDC3/toolbox/openfin/vendor_example/logo.ico",
+        "name": "Johans Workbench"
+    },
     "platform": {
         "uuid": "workbench_platform",
         "autoShow": false,
