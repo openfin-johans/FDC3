@@ -5,9 +5,9 @@
     },
     "startup_app": {
         "uuid": "classic_openfin",
-        "url": "http://localhost:8001/vendor_example/index.html",
+        "url": "https://donbasuno.github.io/FDC3/toolbox/openfin/vendor_example/index.html",
         "autoShow": true,
-        "icon": "http://localhost:8001/vendor_example/logo.ico",
+        "icon": "https://donbasuno.github.io/FDC3/toolbox/openfin/vendor_example/logo.ico",
         "defaultCentered": true,
 		"defaultWidth": 1200,
 		"defaultHeight": 800
@@ -16,8 +16,8 @@
 		"company": "Johans",
 		"description": "Johans Market Data Terminal",
 		"name": "JMDT Classic",
-		"icon": "http://localhost:8001/vendor_example/logo.ico"
+		"icon": "https://donbasuno.github.io/FDC3/toolbox/openfin/vendor_example/logo.ico"
 	},
 	"offlineAccess": true,
-	"splashScreenImage": "http://localhost:8001/vendor_example/splash.png"
+	"splashScreenImage": "https://donbasuno.github.io/FDC3/toolbox/openfin/vendor_example/splash.png"
 }
