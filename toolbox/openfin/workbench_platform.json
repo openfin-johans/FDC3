@@ -9,6 +9,7 @@
         "icon": "https://donbasuno.github.io/FDC3/toolbox/openfin/vendor_example/logo.ico",
         "name": "Johans Workbench"
     },
+    "splashScreenImage": "https://donbasuno.github.io/FDC3/toolbox/openfin/vendor_example/splash.png",
     "platform": {
         "uuid": "workbench_platform",
         "autoShow": false,
