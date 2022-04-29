@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Hello Interop</title>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+
+            if (window.fin) {
+                fin.me.interop.addContextHandler(handleIncomingContext);
+            }
+
+        });
+
+        function handleIncomingContext(contextInfo) {
+            document.getElementById('txtContext').value = JSON.stringify(contextInfo);
+        }
+
+        function setContext() {
+            var myContext = document.getElementById('txtContext').value;
+            if (window.fin && myContext.length > 0) {
+                fin.me.interop.setContext(JSON.parse(myContext));
+            }
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <textarea id="txtContext" style="width:600px;height:300px;"></textarea>
+    <br>
+    <input type="button" value="Set Context" onClick="setContext();">
+
+</body>
+
+</html>

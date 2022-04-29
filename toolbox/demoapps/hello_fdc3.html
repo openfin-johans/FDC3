@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My First Interop</title>
+
+    <script>
+        //window.addEventListener('DOMContentLoaded', () => {
+
+        function listenForContext(){
+            if (window.fdc3) {       
+                //fin.me.interop.addContextHandler(handleIncomingContext);
+                //fdc3.addContextHandler()
+                fdc3.addContextListener((ctx) => {
+                    handleIncomingContext(ctx);
+                });
+            }
+
+        }
+
+        function handleIncomingContext(contextInfo) {
+            document.getElementById('txtContext').value = JSON.stringify(contextInfo);
+        }
+
+        function setContext() {
+            var myContext = document.getElementById('txtContext').value;
+            if (window.fdc3 && myContext.length > 0) {
+                //fin.me.interop.setContext(JSON.parse(myContext));
+                fdc3.broadcast(JSON.parse(myContext));
+            }
+
+        }
+
+        function loadUrl(){
+		var newUrl = document.getElementById('txtUrl').value;
+		document.location = newUrl;
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <textarea id="txtContext" style="width:600px;height:300px;"></textarea>
+    <br>
+    <input type="button" value="Add Context Handler" onClick="listenForContext();">&nbsp;<input type="button" value="Set Context" onClick="setContext();">
+    <br><br>
+    <input type="text" value="https://my.apps.factset.com" id="txtUrl">&nbsp;<input type="button" value="Load FDC3 compatible url" onClick="loadUrl();">
+
+</body>
+
+</html>
