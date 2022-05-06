@@ -29,7 +29,8 @@ SYMPHONY.remote.hello().then(function(data) {
             },
             trigger: function(type, id, data) {
                 //open our app in the grid with a URL parameter appended, this also uses the module service
-                modulesService.show("hello", {title: "Hello App Demo!"}, "hello:controller", "https://donbasuno.github.io/FDC3/toolbox/Symphony/app.html?cashtag=" + data.entity.name, {});
+		modulesService.show("hello", {title: "Share with OpenFin"}, "hello:controller", "fins://donbasuno.github.io/FDC3/toolbox/openfin/workbench_platform.json, {});
+                //modulesService.show("hello", {title: "Hello App Demo!"}, "hello:controller", "https://donbasuno.github.io/FDC3/toolbox/Symphony/app.html?cashtag=" + data.entity.name, {});
             },
             render: function(type, entity) {
               if (this.entityId) {
