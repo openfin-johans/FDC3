@@ -1,7 +1,7 @@
 <html>
 <head>
 <script src="https://www.symphony.com/resources/api/v1.0/symphony-api.js"></script>
-<!--script src="http://localhost:443/symphony-api.js"></script-->
+<!--script src="https://donbasuno.github.io/FDC3/toolbox/Symphony/symphony-api.js"></script-->
 <script type="text/javascript">
 var helloController = SYMPHONY.services.register("hello:controller");
 
@@ -25,11 +25,11 @@ SYMPHONY.remote.hello().then(function(data) {
         helloController.implement({
             select: function(id) {
                 //invoke the module service to show our own application in the grid
-                modulesService.show("hello", {title: "Hello App"}, "hello:controller", "http://localhost:443/app.html", {});
+                modulesService.show("hello", {title: "Hello App"}, "hello:controller", "https://donbasuno.github.io/FDC3/toolbox/Symphony/app.html", {});
             },
             trigger: function(type, id, data) {
                 //open our app in the grid with a URL parameter appended, this also uses the module service
-                modulesService.show("hello", {title: "Hello App Demo!"}, "hello:controller", "http://localhost:443/app.html?cashtag=" + data.entity.name, {});
+                modulesService.show("hello", {title: "Hello App Demo!"}, "hello:controller", "https://donbasuno.github.io/FDC3/toolbox/Symphony/app.html?cashtag=" + data.entity.name, {});
             },
             render: function(type, entity) {
               if (this.entityId) {
@@ -49,7 +49,7 @@ SYMPHONY.remote.hello().then(function(data) {
               }
               if (this.entityId in this.entityContent) {
                 var iframeId = this.entityId;
-                return SYMPHONY.application.loadIFrame(iframeId, "http://localhost:443/renderer.html#" + this.entityId).then(function() {
+                return SYMPHONY.application.loadIFrame(iframeId, "https://donbasuno.github.io/FDC3/toolbox/Symphony/renderer.html#" + this.entityId).then(function() {
                     return iframeId;
                 });
               }
@@ -59,7 +59,7 @@ SYMPHONY.remote.hello().then(function(data) {
               return id in this.entityContent ? id + ": " + this.entityContent[id] : "error";
             }
         });
-        entityService.registerRenderer("com.factset.dev.answer.v1", {}, "hello:controller");
+        entityService.registerRenderer("com.basuno.test", {}, "hello:controller");
     }.bind(this))
 }.bind(this));
 </script>
