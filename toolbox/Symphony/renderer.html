@@ -1,0 +1,23 @@
+<html>
+<head>
+<!--script src="https://www.symphony.com/resources/api/v1.0/symphony-api.js"></script-->
+<script src="http://localhost:443/symphony-api.js"></script>
+<script type="text/javascript">
+SYMPHONY.remote.hello().then(function(data) {
+    SYMPHONY.application.register("hello", ["hello:controller"], []).then(function(response) {
+        var helloController = SYMPHONY.services.subscribe("hello:controller");
+        helloController.invoke("getData", window.location.hash.substring(1)).then(function(result) {
+          document.getElementById("content").innerHTML = result;
+        });
+    }.bind(this))
+}.bind(this));
+</script>
+</head>
+<body>
+<p>iframeId: <span id="iframeId"></span></p>
+<p>Content: <span id="content"></span></p>
+<script type="text/javascript">
+  document.getElementById("iframeId").innerHTML = window.location.hash.substring(1);
+</script>
+</body>
+</html>

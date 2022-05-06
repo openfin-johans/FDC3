@@ -6,8 +6,8 @@
       "name": "Basuno Test",
       "blurb": "This is a Basuno sample application",
       "publisher": "donbasuno",
-      "url": "https://donbasuno.github.io/FDC3/toolbox/Symphony/",
-      "domain": "localhost",
+      "url": "https://donbasuno.github.io/FDC3/toolbox/Symphony/controller.html",
+      "domain": "github.io",
       "visible": true,
       "icon":"https://donbasuno.github.io/FDC3/toolbox/Symphony/buford.png"
     }
