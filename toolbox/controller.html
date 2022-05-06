@@ -1,0 +1,69 @@
+<html>
+<head>
+<script src="https://www.symphony.com/resources/api/v1.0/symphony-api.js"></script>
+<!--script src="https://donbasuno.github.io/FDC3/toolbox/Symphony/symphony-api.js"></script-->
+<script type="text/javascript">
+var helloController = SYMPHONY.services.register("hello:controller");
+
+SYMPHONY.remote.hello().then(function(data) {
+    SYMPHONY.application.register("hello", ["ui", "modules", "applications-nav", "entity"], ["hello:controller"]).then(function(response) {
+
+        //system services
+        var userId = response.userReferenceId;
+        var uiService = SYMPHONY.services.subscribe("ui");
+        var navService = SYMPHONY.services.subscribe("applications-nav");
+        var modulesService = SYMPHONY.services.subscribe("modules");
+        var entityService = SYMPHONY.services.subscribe("entity");
+
+        //add an entry to the left nav
+        navService.add("hello-nav", {title: "Hello App"}, "hello:controller");
+
+        //add a button to the hovercard that appears when hovering over cashtags
+        uiService.registerExtension("cashtag", "hello", "hello:controller", {label: "Hello App Demo"});
+
+        //implement some methods on our custom service. these will be invoked by user actions
+        helloController.implement({
+            select: function(id) {
+                //invoke the module service to show our own application in the grid
+                modulesService.show("hello", {title: "Hello App"}, "hello:controller", "https://donbasuno.github.io/FDC3/toolbox/Symphony/app.html", {});
+            },
+            trigger: function(type, id, data) {
+                //open our app in the grid with a URL parameter appended, this also uses the module service
+		modulesService.show("hello", {title: "Share with OpenFin"}, "hello:controller", "fins://donbasuno.github.io/FDC3/toolbox/openfin/workbench_platform.json, {});
+                //modulesService.show("hello", {title: "Hello App Demo!"}, "hello:controller", "https://donbasuno.github.io/FDC3/toolbox/Symphony/app.html?cashtag=" + data.entity.name, {});
+            },
+            render: function(type, entity) {
+              if (this.entityId) {
+                this.entityId += 1;
+              } else {
+                this.entityId = 1;
+              }
+              if (!this.entityContent) {
+                this.entityContent = {};
+              }
+              for (var idx = 0; idx < entity.data.attributes.length; idx++) {
+                var attribute = entity.data.attributes[idx];
+                if (attribute.name === "plaintext") {
+                  this.entityContent[this.entityId] = attribute.value;
+                  break;
+                }
+              }
+              if (this.entityId in this.entityContent) {
+                var iframeId = this.entityId;
+                return SYMPHONY.application.loadIFrame(iframeId, "https://donbasuno.github.io/FDC3/toolbox/Symphony/renderer.html#" + this.entityId).then(function() {
+                    return iframeId;
+                });
+              }
+            },
+            getData: function(id) {
+              console.log("getData(" + id + ")");
+              return id in this.entityContent ? id + ": " + this.entityContent[id] : "error";
+            }
+        });
+        entityService.registerRenderer("com.basuno.test", {}, "hello:controller");
+    }.bind(this))
+}.bind(this));
+</script>
+</head>
+
+</html>
