@@ -41,7 +41,7 @@ function createFDC3Context(senderApp,myType,myVal){
 
     if (senderApp && senderApp=='Symphony'){
         if (myType && myType=='cashtag'){
-            myContext = '{"type":"fdc3.instrument","name":"' + myVal + '","id":{"ticker":"' + myVal + '","cashtag":"' + myVal + '"}}';
+            myContext = '{"type":"fdc3.instrument","name":"' + myVal + '","id":{"ticker":"' + myVal.substr(1) + '","cashtag":"' + myVal + '"}}';
 
         }
     }
