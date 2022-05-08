@@ -1,0 +1,18 @@
+{
+    "startup_app": {
+        "name": "Blast App - OpenFin",
+        "url": "https://donbasuno.github.io/FDC3/toolbox/busblaster/blaster.html",
+        "uuid": "basuno-openfin-blast",
+        "autoShow": false,
+		"defaultCentered": true,
+		"saveWindowState": false,
+		"defaultHeight": 400,
+		"defaultWidth": 600,
+		"contextMenu": true,
+		"webSecurity": false
+    },
+    "runtime": {
+        "arguments": "--v=1 --inspect",
+        "version": "stable"
+    }
+}
