@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>OpenFin Template</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.openfin.co/services/openfin/notifications/1.11.0/openfin-notifications.js"></script>
+
+	<script language="javascript">
+
+    var contextString = '';
+
+// On application launch, parameters are passed through
+fin.desktop.main(function(args) { 
+   //args parameter contains deep link context
+   //alert(args.parameter1);
+   //alert(createFDC3Context(args.senderApp,args.type,args.data));
+   contextString = createFDC3Context(args.senderApp,args.type,args.data);
+   fin.me.interop.setContext(JSON.parse(contextString));
+})
+
+// If the app is already running, parameters are passed through the 
+//“run-requested” event 
+const app = fin.Application.getCurrentSync();
+app.addListener("run-requested", function (event) { 
+   if(event.userAppConfigArgs){ 
+      //args parameter contains deep link context
+      //alert(event.userAppConfigArgs.type); 
+      //alert(createFDC3Context(event.userAppConfigArgs.senderApp,event.userAppConfigArgs.type,event.userAppConfigArgs.data));
+      contextString = createFDC3Context(event.userAppConfigArgs.senderApp,event.userAppConfigArgs.type,event.userAppConfigArgs.data);
+      fin.me.interop.setContext(JSON.parse(contextString));
+   } 
+})
+
+function createFDC3Context(senderApp,myType,myVal){
+
+    var myContext = '';
+
+    if (senderApp && senderApp=='Symphony'){
+        if (myType && myType=='cashtag'){
+            myContext = '{"type":"fdc3.instrument","name":"' + myVal + '","id":{"ticker":"' + myVal + '","cashtag":"' + myVal + '"}}';
+
+        }
+    }
+
+    return myContext;
+
+}
+
+function connectInterop(platform,channel){
+    fin.me.interop = fin.Interop.connectSync('workbench_platform');
+    fin.me.interop.joinContextGroup('green');
+}
+
+</script>
+	
+    </head>
+    <body onLoad="connectInterop();">
+        <div>
+            Johans OpenFin Blaster
+        </div>
+    </body>
+
+</html>
