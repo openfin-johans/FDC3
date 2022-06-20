@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Context Explained</title>
+
+    <script>
+
+        function listenForContext(){
+
+            if (window.fdc3) {
+                
+                fdc3.addContextListener((ctx) => {
+                    handleIncomingContext(ctx);
+                });
+
+            }
+
+        }
+
+        function handleIncomingContext(contextInfo) {
+            
+            document.getElementById('txtContext').value = JSON.stringify(contextInfo) + '\n-----------\n' + document.getElementById('txtContext').value;
+        
+        }
+
+        function setContext() {
+            
+            var myContext = document.getElementById('txtContext').value;
+            
+            if (window.fdc3 && myContext.length > 0) {
+                fdc3.broadcast(JSON.parse(myContext));
+            }
+
+        }
+
+        function clearContextView(){
+
+            document.getElementById('txtContext').value = '';
+
+        }
+
+        function joinChannel(){
+
+            var myChannel = document.getElementById('txtContext').value;
+
+            if (window.fdc3 && myChannel.length > 0) {
+                
+                fdc3.joinChannel(myChannel);
+
+            }
+
+        }      
+
+        function setExample(type){
+
+            var contextExample = '';
+
+            if (type == 1) {
+                
+                contextExample = '{"type":"fdc3.instrument","name": "Microsoft","id": {"ticker": "MSFT","RIC": "MSFT.OQ","ISIN": "US5949181045"}}';
+
+            } else if (type == 2) {
+
+                contextExample = '{"type": "fdc3.contact","name": "Jane Doe","id": {"email": "jane.doe@mail.com"}}';
+
+            } else if (type == 3) {
+
+                contextExample = '{"type": "fdc3.portfolio", "positions": [ { "type": "fdc3.position", "instrument": { "type": "fdc3.instrument", "id": { "ticker": "AAPL" } }, "holding": 2000000 }, { "type": "fdc3.position", "instrument": { "type": "fdc3.instrument", "id": { "ticker": "MSFT" } }, "holding": 1500000 }, { "type": "fdc3.position", "instrument": { "type": "fdc3.instrument", "id": { "ticker": "IBM" } }, "holding": 3000000 } ] }';
+
+            }  
+
+            document.getElementById('txtContext').value = contextExample;
+
+        }  
+
+    </script>
+
+</head>
+
+<body>
+
+    <textarea id="txtContext" style="width:600px;height:300px;"></textarea>
+    <br>
+    <input type="button" value="Listen for Context" onClick="listenForContext();">&nbsp;<input type="button" value="Set Context" onClick="setContext();">&nbsp;<input type="button" value="Clear" onClick="clearContextView();">&nbsp;<input type="button" value="Join Channel" onClick="joinChannel();">
+    <br><br>
+    <input type="button" value="Instrument Example" onClick="setExample(1);">&nbsp;<input type="button" value="Contact Example" onClick="setExample(2);">&nbsp;<input type="button" value="Portfolio Example" onClick="setExample(3);">
+    
+
+</body>
+
+</html>
